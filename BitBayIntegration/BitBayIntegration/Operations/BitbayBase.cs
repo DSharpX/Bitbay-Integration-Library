@@ -50,14 +50,11 @@ namespace BitBayIntegration.Operations
             return default(T);
         }
 
-        protected async Task<T1> PostMethodAsync<T, T1>(T item, string endPoint, string marketCode = "")
+        protected async Task<T1> PostMethodAsync<T, T1>(T item, string endPoint, string marketCode)
         {
             RestRequest request;
 
-            if (string.IsNullOrEmpty(marketCode))
-                request = new RestRequest(endPoint, Method.GET);
-            else
-                request = new RestRequest(endPoint + marketCode, Method.POST);
+            request = new RestRequest(endPoint + marketCode, Method.POST);
 
 
             var unixTimeStamp = TimeConverter.GetUnixTimestamp().ToString();
